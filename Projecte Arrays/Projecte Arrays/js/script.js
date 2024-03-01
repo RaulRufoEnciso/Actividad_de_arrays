@@ -2,6 +2,7 @@
 let datos;
 let tabla = [];
 let pokemons= [];
+let pokemonss= [];
 let municipios= [];
 let meteoritoss= [];
 let peliculas= [];
@@ -18,7 +19,7 @@ let isAscendingWeight = false;
 -------------------------------------------------------------------------------------------
     								TABLA POR CONSOLA
 -------------------------------------------------------------------------------------------  
-*//* 
+*/
 
 // POKEMONS
 fetch("js/data/pokemon.json")
@@ -65,27 +66,27 @@ fetch("js/data/pokemon.json")
 
 console.log(tabla);
 //console.table(tabla);
-*//*
+/*
 -------------------------------------------------------------------------------------------
     					TABLA FISICA CON BOTONES CON ACCIONES
 -------------------------------------------------------------------------------------------
-*//*
-function createPokemonTable(pokemons) {
+*/
+function createPokemonTable(pokemonss) {
 	// Crear la tabla
-	console.log(pokemons)
+	console.log(pokemonss)
 	// Cogemos las filas y las columnas
-	row = pokemons.length;
-	col = pokemons[0].length;
+	row = pokemonss.length;
+	col = pokemonss[0].length;
 	let tabla = `<table>`;
 	tabla += `<tr> <td><h3 onclick="orderListId()">Id</h3></td> <td><h3>Pokemon</h3></td> <td><h3 onclick="orderListName()">Name</h3></td> <td><h3 onclick="orderList(orderListPeso())">Peso</h3></td> </tr>`
 	for (let i = 0; i < row; i++) {
 		tabla += `<tr>`;
 		for (let j = 0; j < col; j++) {
 			tabla += `<td>`;
-			if (pokemons[i][j].startsWith("http")) {
-				tabla += `<img src="${pokemons[i][j]}"> `;
+			if (pokemonss[i][j].startsWith("http")) {
+				tabla += `<img src="${pokemonss[i][j]}"> `;
 			} else{
-				tabla += `${pokemons[i][j]} `;
+				tabla += `${pokemonss[i][j]} `;
 			}
 			tabla += `</td>`;
 		}
@@ -100,22 +101,22 @@ function createPokemonTable(pokemons) {
 function orderList(valor) {
 	let tableContainer = document.getElementById("resultat");
 	if (valor === "asc") {
-		pokemons.sort((a, b) => {return a[0] - b[0]});
-		tableContainer.innerHTML = createPokemonTable(pokemons);
+		pokemonss.sort((a, b) => {return a[0] - b[0]});
+		tableContainer.innerHTML = createPokemonTable(pokemonss);
 	  } else if (valor === "desc") {
-		pokemons.sort((a, b) => {return b[0] - a[0]});
-		tableContainer.innerHTML = createPokemonTable(pokemons);
+		pokemonss.sort((a, b) => {return b[0] - a[0]});
+		tableContainer.innerHTML = createPokemonTable(pokemonss);
 	  }
 }
 
 function orderListId() {
 	let tableContainer = document.getElementById("resultat");
 	if (isAscendingID) {
-		pokemons.sort((a, b) => {return a[0] - b[0]});
-		tableContainer.innerHTML = createPokemonTable(pokemons);
+		pokemonss.sort((a, b) => {return a[0] - b[0]});
+		tableContainer.innerHTML = createPokemonTable(pokemonss);
 	} else {
-		pokemons.sort((a, b) => {return b[0] - a[0]});
-		tableContainer.innerHTML = createPokemonTable(pokemons);
+		pokemonss.sort((a, b) => {return b[0] - a[0]});
+		tableContainer.innerHTML = createPokemonTable(pokemonss);
     }
 	// Cambia el estado para la próxima vez
 	isAscendingID = !isAscendingID
@@ -126,11 +127,11 @@ function orderListName() {
 	let tableContainer = document.getElementById("resultat");
 
     if (isAscendingName) {
-        pokemons.sort((a, b) => a[2].localeCompare(b[2]));
-		tableContainer.innerHTML = createPokemonTable(pokemons);
+        pokemonss.sort((a, b) => a[2].localeCompare(b[2]));
+		tableContainer.innerHTML = createPokemonTable(pokemonss);
     } else {
-        pokemons.sort((a, b) => b[2].localeCompare(a[2]));
-		tableContainer.innerHTML = createPokemonTable(pokemons);
+        pokemonss.sort((a, b) => b[2].localeCompare(a[2]));
+		tableContainer.innerHTML = createPokemonTable(pokemonss);
     }
 
     // Cambia el estado para la próxima vez
@@ -141,11 +142,11 @@ function orderListPeso() {
 	let tableContainer = document.getElementById("resultat");
 
 	if (isAscendingWeight) {
-		pokemons.sort((a, b) => {return a[3] - b[3]});
-		tableContainer.innerHTML = createPokemonTable(pokemons);
+		pokemonss.sort((a, b) => {return a[3] - b[3]});
+		tableContainer.innerHTML = createPokemonTable(pokemonss);
 	} else {
-		pokemons.sort((a, b) => {return b[3] - a[3]});
-		tableContainer.innerHTML = createPokemonTable(pokemons);
+		pokemonss.sort((a, b) => {return b[3] - a[3]});
+		tableContainer.innerHTML = createPokemonTable(pokemonss);
     }
 	// Cambia el estado para la próxima vez
 	isAscendingWeight = !isAscendingWeight
@@ -162,7 +163,7 @@ function searchList(){
 	cosaBuscar.addEventListener('input', function(event) {
 		// Imprime el valor actual del input en la consola
 		let valorTiempoReal = event.target.value;
-		let pokemons2 = pokemons.filter(poke => 
+		let pokemons2 = pokemonss.filter(poke => 
 			poke[2].toLowerCase().includes(valorTiempoReal.toLowerCase())
 		);
 		
@@ -174,11 +175,11 @@ function searchList(){
 
 function calcMitjana(){
 	let sumaPesos= 0;
-	for (let i = 0; i < pokemons.length; i++) {
-		let numeros = parseFloat(pokemons[i][3]);
+	for (let i = 0; i < pokemonss.length; i++) {
+		let numeros = parseFloat(pokemonss[i][3]);
 		sumaPesos += numeros;
 	}
-	alert("Esta es la media de todos los pesos "+(sumaPesos/pokemons.length).toFixed(2));
+	alert("Esta es la media de todos los pesos "+(sumaPesos/pokemonss.length).toFixed(2));
 }
 
 fetch("js/data/pokemon.json")
@@ -193,11 +194,11 @@ fetch("js/data/pokemon.json")
 		fila.push(datos[i].name);
 		let weightSinKg = datos[i].weight.split(" ")
 		fila.push(weightSinKg[0]);
-		pokemons.push(fila);
+		pokemonss.push(fila);
 	}
 	// console.log(pokemons)
 	let tableContainer = document.getElementById("resultat");
-	tableContainer.innerHTML = createPokemonTable(pokemons);
+	tableContainer.innerHTML = createPokemonTable(pokemonss);
 	searchList();
 	});
 
